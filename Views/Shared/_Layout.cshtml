@@ -93,59 +93,83 @@
                         <li class="menu-title">Main</li>
 
                         <li>
-                            <a href="/Home/index">
+                            <a href="/Home/">
+                                @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
+                                <i class="ti-home"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User/">
+                                @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
+                                <i class="ti-home"></i><span> Users </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Product/">
+                                @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
+                                <i class="ti-home"></i><span> Products </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Supplier/">
+                                @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
+                                <i class="ti-home"></i><span> Suppliers </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/">
                                 @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
                                 <i class="ti-home"></i><span> Dashboard </span>
                             </a>
                         </li>
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-shine"></i><span>Users </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="/User">Add</a></li>
-                                <li><a href="viewadmins.aspx">View Admins</a></li>
-                                <li><a href="viewemployee.aspx">View Employees</a></li>
-                                <li><a href="viewcustomers.aspx">View Customers</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-shine"></i><span>Products </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="products.aspx">Add Products</a></li>
-                                <li><a href="viewproducts.aspx">View Products</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-shine"></i><span>Sell </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="sales.aspx">Sell Products</a></li>
-                                <li><a href="viewsales.aspx">View Sales</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-shine"></i><span>Purchase </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="purchases.aspx">Purchase Products</a></li>
-                                <li><a href="viewpurchase.aspx">View Purchases</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="ti-shine"></i><span>Suppliers </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="supplyers.aspx">Add Suppliers</a></li>
-                                <li><a href="viewsuppliers.aspx">View Suppliers</a></li>
-                            </ul>
-                        </li>
+                        @*<li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                    <i class="ti-shine"></i><span>Users </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="/User">Add</a></li>
+                                    <li><a href="viewadmins.aspx">View Admins</a></li>
+                                    <li><a href="viewemployee.aspx">View Employees</a></li>
+                                    <li><a href="viewcustomers.aspx">View Customers</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                    <i class="ti-shine"></i><span>Products </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="products.aspx">Add Products</a></li>
+                                    <li><a href="viewproducts.aspx">View Products</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                    <i class="ti-shine"></i><span>Sell </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="sales.aspx">Sell Products</a></li>
+                                    <li><a href="viewsales.aspx">View Sales</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                    <i class="ti-shine"></i><span>Purchase </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="purchases.aspx">Purchase Products</a></li>
+                                    <li><a href="viewpurchase.aspx">View Purchases</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                    <i class="ti-shine"></i><span>Suppliers </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="supplyers.aspx">Add Suppliers</a></li>
+                                    <li><a href="viewsuppliers.aspx">View Suppliers</a></li>
+                                </ul>
+                            </li>*@
                     </ul>
 
 

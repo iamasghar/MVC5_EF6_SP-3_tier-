@@ -18,6 +18,27 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
             return View(data.ToList());
         }
 
+        // GET: User/Admins
+        public ActionResult Admin()
+        {
+            var data = db.Database.SqlQuery<user>("exec SP_UserAccess '1'");
+            return View(data);
+        }
+
+        // GET: User/Employees
+        public ActionResult Employee()
+        {
+            var data = db.Database.SqlQuery<user>("exec SP_UserAccess '2'");
+            return View(data);
+        }
+
+        // GET: User/Customers
+        public ActionResult Customer()
+        {
+            var data = db.Database.SqlQuery<user>("exec SP_UserAccess '3'");
+            return View(data);
+        }
+
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
