@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="~/assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <link href="~/assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/assets/js/modernizr.min.js"></script>
+    <style>
+        .dataTables_filter,
+        .dataTables_paginate {
+            float: right;
+        }
+    </style>
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="/Home/index" class="logo"><i class="mdi mdi-radar"></i><span>POS</span></a>
+                </div>
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <nav class="navbar-custom">
+
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="~/assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                            Asghar Ali
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                            <!-- item-->
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout"></i><span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search"></li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="/Home/index">
+                                @*@Html.ActionLink("Dashboard", "Index", "Home", new { Html = "<i class='ti-home'></i>" }, new { @class = "waves-effect waves-primary" })*@
+                                <i class="ti-home"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-shine"></i><span>Users </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="/User">Add</a></li>
+                                <li><a href="viewadmins.aspx">View Admins</a></li>
+                                <li><a href="viewemployee.aspx">View Employees</a></li>
+                                <li><a href="viewcustomers.aspx">View Customers</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-shine"></i><span>Products </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="products.aspx">Add Products</a></li>
+                                <li><a href="viewproducts.aspx">View Products</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-shine"></i><span>Sell </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="sales.aspx">Sell Products</a></li>
+                                <li><a href="viewsales.aspx">View Sales</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-shine"></i><span>Purchase </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="purchases.aspx">Purchase Products</a></li>
+                                <li><a href="viewpurchase.aspx">View Purchases</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-shine"></i><span>Suppliers </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="supplyers.aspx">Add Suppliers</a></li>
+                                <li><a href="viewsuppliers.aspx">View Suppliers</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <form runat="server">
+                        @RenderBody()
+                    </form>
+                    <!-- end row -->
+                    <!-- end row -->
+
+                </div>
+                <!-- end container -->
+            </div>
+            <!-- end content -->
+
+            <footer class="footer">
+                @DateTime.Now.Year © POS <span class="hide-phone">- Bike Spare Parts</span>
+            </footer>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+
+
+    <script>
+        var resizefunc = [];
+
+    </script>
+
+    <!-- Plugins  -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <!-- Popper for Bootstrap -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/detect.js"></script>
+    <script src="~/assets/js/fastclick.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/jquery.blockUI.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.js"></script>
+    <script src="~/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="~/assets/plugins/switchery/switchery.min.js"></script>
+
+    <!-- Parsleyjs -->
+    <script type="text/javascript" src="~/assets/plugins/parsleyjs/dist/parsley.min.js"></script>
+
+    <script src="~/assets/js/jquery.core.js"></script>
+    <script src="~/assets/js/jquery.app.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').parsley();
+        });
+
+    </script>
+    <!-- Required datatable js -->
+    <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <!-- Key Tables -->
+    <script src="~/assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+
+    <!-- Responsive examples -->
+    <script src="~/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Selection table -->
+    <script src="~/assets/plugins/datatables/dataTables.select.min.js"></script>
+    <script src="~/assets/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        function param(name) {
+            return (location.search.split(name + '=')[1] || '').split('&')[0];
+        }
+
+        function rm_space(string) {
+            var st = string;
+            for (var i = 0; i < 10; i++) {
+                st = st.replace("%20", " ");
+            }
+            return st.replace("%20", " ");
+        }
+        $(document).ready(function () {
+            // Display a success toast, with a title
+            if (param("success") != null && param("success") != "") {
+                toastr.success(rm_space(param("success")), "Success");
+            }
+            else if (param("error") != null && param("error") != "") {
+                toastr.error(rm_space(param("error")), 'Error');
+            }
+
+
+            // Display an error toast, with a title
+
+            // Default Datatable
+            $('#datatable').DataTable();
+
+            //Buttons examples
+            var table = $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf']
+            });
+
+            // Key Tables
+
+            $('#key-table').DataTable({
+                keys: true
+            });
+
+            // Responsive Datatable
+            $('#responsive-datatable').DataTable();
+
+            // Multi Selection Datatable
+            $('#selection-datatable').DataTable({
+                select: {
+                    style: 'multi'
+                }
+            });
+
+            table.buttons().container()
+                .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        });
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,891 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OfcDbMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="cus_id" />
+          </Key>
+          <Property Name="cus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cnic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cell" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cell" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="prd_id" />
+          </Key>
+          <Property Name="prd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prd_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_stock" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_expiry" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_manufacturer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="purchases">
+          <Key>
+            <PropertyRef Name="trx_id" />
+          </Key>
+          <Property Name="trx_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prd_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_quantity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_per_date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_per_by" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_supplyer" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sells">
+          <Key>
+            <PropertyRef Name="trx_id" />
+          </Key>
+          <Property Name="trx_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prd_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_quantity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_sell_date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prd_sell_by" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplyers">
+          <Key>
+            <PropertyRef Name="sup_id" />
+          </Key>
+          <Property Name="sup_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cell" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cell" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cnic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="access_level" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Function Name="SP_CusDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CusInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cusName" Type="varchar" Mode="In" />
+          <Parameter Name="cusCell" Type="varchar" Mode="In" />
+          <Parameter Name="cusAddress" Type="varchar" Mode="In" />
+          <Parameter Name="cusCnic" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CusSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CusSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CusUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cusId" Type="int" Mode="In" />
+          <Parameter Name="cusName" Type="varchar" Mode="In" />
+          <Parameter Name="cusCell" Type="varchar" Mode="In" />
+          <Parameter Name="cusAddress" Type="varchar" Mode="In" />
+          <Parameter Name="cusCnic" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_EmpDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_EmpInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empName" Type="varchar" Mode="In" />
+          <Parameter Name="empCell" Type="varchar" Mode="In" />
+          <Parameter Name="empAddress" Type="varchar" Mode="In" />
+          <Parameter Name="empEmail" Type="varchar" Mode="In" />
+          <Parameter Name="empPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_EmpSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_EmpSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_EmpUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empName" Type="varchar" Mode="In" />
+          <Parameter Name="empCell" Type="varchar" Mode="In" />
+          <Parameter Name="empAddress" Type="varchar" Mode="In" />
+          <Parameter Name="empEmail" Type="varchar" Mode="In" />
+          <Parameter Name="empPass" Type="varchar" Mode="In" />
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userEmail" Type="varchar" Mode="In" />
+          <Parameter Name="userPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_PrdDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PrdInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdStock" Type="varchar" Mode="In" />
+          <Parameter Name="prdExpiry" Type="varchar" Mode="In" />
+          <Parameter Name="prdManuf" Type="varchar" Mode="In" />
+          <Parameter Name="prdImg" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_PrdSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PrdSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_PrdUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdStock" Type="varchar" Mode="In" />
+          <Parameter Name="prdExpiry" Type="varchar" Mode="In" />
+          <Parameter Name="prdManuf" Type="varchar" Mode="In" />
+          <Parameter Name="prdImg" Type="varchar" Mode="In" />
+          <Parameter Name="prdId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Purchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdQty" Type="varchar" Mode="In" />
+          <Parameter Name="prdTitle" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PurDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PurInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdQty" Type="varchar" Mode="In" />
+          <Parameter Name="prdPerDate" Type="varchar" Mode="In" />
+          <Parameter Name="prdPerBy" Type="varchar" Mode="In" />
+          <Parameter Name="prdSup" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_PurSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PurSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_PurUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdQty" Type="varchar" Mode="In" />
+          <Parameter Name="prdPerDate" Type="varchar" Mode="In" />
+          <Parameter Name="prdPerBy" Type="varchar" Mode="In" />
+          <Parameter Name="prdSup" Type="varchar" Mode="In" />
+          <Parameter Name="trxId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Sell" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdQty" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SellDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trxId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SellInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdQty" Type="varchar" Mode="In" />
+          <Parameter Name="prdSellDate" Type="varchar" Mode="In" />
+          <Parameter Name="prdSellBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SellSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trxId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SellSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_SellUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prdTitle" Type="varchar" Mode="In" />
+          <Parameter Name="prdPrice" Type="varchar" Mode="In" />
+          <Parameter Name="prdQty" Type="varchar" Mode="In" />
+          <Parameter Name="prdSellDate" Type="varchar" Mode="In" />
+          <Parameter Name="prdSellBy" Type="varchar" Mode="In" />
+          <Parameter Name="trxId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SupDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SupInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supName" Type="varchar" Mode="In" />
+          <Parameter Name="supCell" Type="varchar" Mode="In" />
+          <Parameter Name="supAddress" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SupSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SupSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_SupUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supName" Type="varchar" Mode="In" />
+          <Parameter Name="supCell" Type="varchar" Mode="In" />
+          <Parameter Name="supAddress" Type="varchar" Mode="In" />
+          <Parameter Name="supId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_UserAccess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userAccess" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UserDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_UserInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="varchar" Mode="In" />
+          <Parameter Name="userCell" Type="varchar" Mode="In" />
+          <Parameter Name="userAddress" Type="varchar" Mode="In" />
+          <Parameter Name="userCnic" Type="varchar" Mode="In" />
+          <Parameter Name="userEmail" Type="varchar" Mode="In" />
+          <Parameter Name="access_level" Type="varchar" Mode="In" />
+          <Parameter Name="userPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UserPassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userPass" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_UserSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_UserSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_UserUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="varchar" Mode="In" />
+          <Parameter Name="userCell" Type="varchar" Mode="In" />
+          <Parameter Name="userAddress" Type="varchar" Mode="In" />
+          <Parameter Name="userCnic" Type="varchar" Mode="In" />
+          <Parameter Name="userEmail" Type="varchar" Mode="In" />
+          <Parameter Name="access_level" Type="varchar" Mode="In" />
+          <Parameter Name="userPass" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="OfcDbMVCModelStoreContainer">
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchases" EntityType="Self.purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sells" EntityType="Self.sells" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplyers" EntityType="Self.supplyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OfcDbMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="cus_id" />
+          </Key>
+          <Property Name="cus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cell" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cell" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="prd_id" />
+          </Key>
+          <Property Name="prd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prd_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_stock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_expiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="purchase">
+          <Key>
+            <PropertyRef Name="trx_id" />
+          </Key>
+          <Property Name="trx_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prd_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_per_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_per_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_supplyer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sell">
+          <Key>
+            <PropertyRef Name="trx_id" />
+          </Key>
+          <Property Name="trx_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prd_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_sell_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prd_sell_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplyer">
+          <Key>
+            <PropertyRef Name="sup_id" />
+          </Key>
+          <Property Name="sup_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cell" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cell" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="access_level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OfcDbMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="purchases" EntityType="Self.purchase" />
+          <EntitySet Name="sells" EntityType="Self.sell" />
+          <EntitySet Name="supplyers" EntityType="Self.supplyer" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <FunctionImport Name="SP_CusDelete">
+            <Parameter Name="cusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CusInsert">
+            <Parameter Name="cusName" Mode="In" Type="String" />
+            <Parameter Name="cusCell" Mode="In" Type="String" />
+            <Parameter Name="cusAddress" Mode="In" Type="String" />
+            <Parameter Name="cusCnic" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CusSearch" ReturnType="Collection(OfcDbMVCModel.SP_CusSearch_Result)">
+            <Parameter Name="cusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CusSelect" ReturnType="Collection(OfcDbMVCModel.SP_CusSelect_Result)" />
+          <FunctionImport Name="SP_CusUpdate">
+            <Parameter Name="cusId" Mode="In" Type="Int32" />
+            <Parameter Name="cusName" Mode="In" Type="String" />
+            <Parameter Name="cusCell" Mode="In" Type="String" />
+            <Parameter Name="cusAddress" Mode="In" Type="String" />
+            <Parameter Name="cusCnic" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EmpDelete">
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EmpInsert">
+            <Parameter Name="empName" Mode="In" Type="String" />
+            <Parameter Name="empCell" Mode="In" Type="String" />
+            <Parameter Name="empAddress" Mode="In" Type="String" />
+            <Parameter Name="empEmail" Mode="In" Type="String" />
+            <Parameter Name="empPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EmpSearch" ReturnType="Collection(OfcDbMVCModel.SP_EmpSearch_Result)">
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EmpSelect" ReturnType="Collection(OfcDbMVCModel.SP_EmpSelect_Result)" />
+          <FunctionImport Name="SP_EmpUpdate" EntitySet="employees" ReturnType="Collection(OfcDbMVCModel.employee)">
+            <Parameter Name="empName" Mode="In" Type="String" />
+            <Parameter Name="empCell" Mode="In" Type="String" />
+            <Parameter Name="empAddress" Mode="In" Type="String" />
+            <Parameter Name="empEmail" Mode="In" Type="String" />
+            <Parameter Name="empPass" Mode="In" Type="String" />
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Login" ReturnType="Collection(OfcDbMVCModel.SP_Login_Result)">
+            <Parameter Name="userEmail" Mode="In" Type="String" />
+            <Parameter Name="userPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PrdDelete" EntitySet="products" ReturnType="Collection(OfcDbMVCModel.product)">
+            <Parameter Name="prdId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PrdInsert" EntitySet="products" ReturnType="Collection(OfcDbMVCModel.product)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdStock" Mode="In" Type="String" />
+            <Parameter Name="prdExpiry" Mode="In" Type="String" />
+            <Parameter Name="prdManuf" Mode="In" Type="String" />
+            <Parameter Name="prdImg" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PrdSearch" EntitySet="products" ReturnType="Collection(OfcDbMVCModel.product)">
+            <Parameter Name="prdId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PrdSelect" EntitySet="products" ReturnType="Collection(OfcDbMVCModel.product)" />
+          <FunctionImport Name="SP_PrdUpdate" EntitySet="products" ReturnType="Collection(OfcDbMVCModel.product)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdStock" Mode="In" Type="String" />
+            <Parameter Name="prdExpiry" Mode="In" Type="String" />
+            <Parameter Name="prdManuf" Mode="In" Type="String" />
+            <Parameter Name="prdImg" Mode="In" Type="String" />
+            <Parameter Name="prdId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Purchase" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)">
+            <Parameter Name="prdQty" Mode="In" Type="String" />
+            <Parameter Name="prdTitle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PurDelete" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PurInsert" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdQty" Mode="In" Type="String" />
+            <Parameter Name="prdPerDate" Mode="In" Type="String" />
+            <Parameter Name="prdPerBy" Mode="In" Type="String" />
+            <Parameter Name="prdSup" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PurSearch" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)">
+            <Parameter Name="searchId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PurSelect" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)" />
+          <FunctionImport Name="SP_PurUpdate" EntitySet="purchases" ReturnType="Collection(OfcDbMVCModel.purchase)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdQty" Mode="In" Type="String" />
+            <Parameter Name="prdPerDate" Mode="In" Type="String" />
+            <Parameter Name="prdPerBy" Mode="In" Type="String" />
+            <Parameter Name="prdSup" Mode="In" Type="String" />
+            <Parameter Name="trxId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Sell" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdQty" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SellDelete" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)">
+            <Parameter Name="trxId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SellInsert" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdQty" Mode="In" Type="String" />
+            <Parameter Name="prdSellDate" Mode="In" Type="String" />
+            <Parameter Name="prdSellBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SellSearch" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)">
+            <Parameter Name="trxId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SellSelect" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)" />
+          <FunctionImport Name="SP_SellUpdate" EntitySet="sells" ReturnType="Collection(OfcDbMVCModel.sell)">
+            <Parameter Name="prdTitle" Mode="In" Type="String" />
+            <Parameter Name="prdPrice" Mode="In" Type="String" />
+            <Parameter Name="prdQty" Mode="In" Type="String" />
+            <Parameter Name="prdSellDate" Mode="In" Type="String" />
+            <Parameter Name="prdSellBy" Mode="In" Type="String" />
+            <Parameter Name="trxId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SupDelete" EntitySet="supplyers" ReturnType="Collection(OfcDbMVCModel.supplyer)">
+            <Parameter Name="supId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SupInsert" EntitySet="supplyers" ReturnType="Collection(OfcDbMVCModel.supplyer)">
+            <Parameter Name="supName" Mode="In" Type="String" />
+            <Parameter Name="supCell" Mode="In" Type="String" />
+            <Parameter Name="supAddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SupSearch" EntitySet="supplyers" ReturnType="Collection(OfcDbMVCModel.supplyer)">
+            <Parameter Name="supId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SupSelect" EntitySet="supplyers" ReturnType="Collection(OfcDbMVCModel.supplyer)" />
+          <FunctionImport Name="SP_SupUpdate" EntitySet="supplyers" ReturnType="Collection(OfcDbMVCModel.supplyer)">
+            <Parameter Name="supName" Mode="In" Type="String" />
+            <Parameter Name="supCell" Mode="In" Type="String" />
+            <Parameter Name="supAddress" Mode="In" Type="String" />
+            <Parameter Name="supId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserAccess" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userAccess" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserDelete" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserInsert" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="userCell" Mode="In" Type="String" />
+            <Parameter Name="userAddress" Mode="In" Type="String" />
+            <Parameter Name="userCnic" Mode="In" Type="String" />
+            <Parameter Name="userEmail" Mode="In" Type="String" />
+            <Parameter Name="access_level" Mode="In" Type="String" />
+            <Parameter Name="userPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserPassUpdate" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userPass" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserSearch" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UserSelect" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)" />
+          <FunctionImport Name="SP_UserUpdate" EntitySet="users" ReturnType="Collection(OfcDbMVCModel.user)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="userCell" Mode="In" Type="String" />
+            <Parameter Name="userAddress" Mode="In" Type="String" />
+            <Parameter Name="userCnic" Mode="In" Type="String" />
+            <Parameter Name="userEmail" Mode="In" Type="String" />
+            <Parameter Name="access_level" Mode="In" Type="String" />
+            <Parameter Name="userPass" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_CusSearch_Result">
+          <Property Type="Int32" Name="cus_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_CusSelect_Result">
+          <Property Type="Int32" Name="cus_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_EmpSearch_Result">
+          <Property Type="Int32" Name="emp_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_EmpSelect_Result">
+          <Property Type="Int32" Name="emp_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_Login_Result">
+          <Property Type="Int32" Name="u_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="access_level" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_PrdSearch_Result">
+          <Property Type="Int32" Name="prd_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_stock" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_expiry" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_manufacturer" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="img" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SP_PrdSelect_Result">
+          <Property Type="Int32" Name="prd_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_stock" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_expiry" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_manufacturer" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="img" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SP_PurSearch_Result">
+          <Property Type="Int32" Name="trx_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_quantity" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_per_date" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_per_by" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_supplyer" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_PurSelect_Result">
+          <Property Type="Int32" Name="trx_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_quantity" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_per_date" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_per_by" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_supplyer" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_SellSearch_Result">
+          <Property Type="Int32" Name="trx_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_quantity" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_sell_date" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_sell_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_SellSelect_Result">
+          <Property Type="Int32" Name="trx_id" Nullable="false" />
+          <Property Type="String" Name="prd_title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_price" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_quantity" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_sell_date" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prd_sell_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_SupSearch_Result">
+          <Property Type="Int32" Name="sup_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_SupSelect_Result">
+          <Property Type="Int32" Name="sup_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_UserAccess_Result">
+          <Property Type="Int32" Name="u_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="access_level" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_UserSearch_Result">
+          <Property Type="Int32" Name="u_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="access_level" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_UserSelect_Result">
+          <Property Type="Int32" Name="u_id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cell" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cnic" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="access_level" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OfcDbMVCModelStoreContainer" CdmEntityContainer="OfcDbMVCEntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="prd_id" ColumnName="prd_id" />
+                <ScalarProperty Name="prd_title" ColumnName="prd_title" />
+                <ScalarProperty Name="prd_price" ColumnName="prd_price" />
+                <ScalarProperty Name="prd_stock" ColumnName="prd_stock" />
+                <ScalarProperty Name="prd_expiry" ColumnName="prd_expiry" />
+                <ScalarProperty Name="prd_manufacturer" ColumnName="prd_manufacturer" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchases">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.purchase">
+              <MappingFragment StoreEntitySet="purchases">
+                <ScalarProperty Name="trx_id" ColumnName="trx_id" />
+                <ScalarProperty Name="prd_title" ColumnName="prd_title" />
+                <ScalarProperty Name="prd_price" ColumnName="prd_price" />
+                <ScalarProperty Name="prd_quantity" ColumnName="prd_quantity" />
+                <ScalarProperty Name="prd_per_date" ColumnName="prd_per_date" />
+                <ScalarProperty Name="prd_per_by" ColumnName="prd_per_by" />
+                <ScalarProperty Name="prd_supplyer" ColumnName="prd_supplyer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sells">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.sell">
+              <MappingFragment StoreEntitySet="sells">
+                <ScalarProperty Name="trx_id" ColumnName="trx_id" />
+                <ScalarProperty Name="prd_title" ColumnName="prd_title" />
+                <ScalarProperty Name="prd_price" ColumnName="prd_price" />
+                <ScalarProperty Name="prd_quantity" ColumnName="prd_quantity" />
+                <ScalarProperty Name="prd_sell_date" ColumnName="prd_sell_date" />
+                <ScalarProperty Name="prd_sell_by" ColumnName="prd_sell_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplyers">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.supplyer">
+              <MappingFragment StoreEntitySet="supplyers">
+                <ScalarProperty Name="sup_id" ColumnName="sup_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="OfcDbMVCModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="access_level" ColumnName="access_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_CusDelete" FunctionName="OfcDbMVCModel.Store.SP_CusDelete" />
+          <FunctionImportMapping FunctionImportName="SP_CusInsert" FunctionName="OfcDbMVCModel.Store.SP_CusInsert" />
+          <FunctionImportMapping FunctionImportName="SP_CusSearch" FunctionName="OfcDbMVCModel.Store.SP_CusSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OfcDbMVCModel.SP_CusSearch_Result">
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CusSelect" FunctionName="OfcDbMVCModel.Store.SP_CusSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OfcDbMVCModel.SP_CusSelect_Result">
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CusUpdate" FunctionName="OfcDbMVCModel.Store.SP_CusUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_EmpDelete" FunctionName="OfcDbMVCModel.Store.SP_EmpDelete" />
+          <FunctionImportMapping FunctionImportName="SP_EmpInsert" FunctionName="OfcDbMVCModel.Store.SP_EmpInsert" />
+          <FunctionImportMapping FunctionImportName="SP_EmpSearch" FunctionName="OfcDbMVCModel.Store.SP_EmpSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OfcDbMVCModel.SP_EmpSearch_Result">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_EmpSelect" FunctionName="OfcDbMVCModel.Store.SP_EmpSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OfcDbMVCModel.SP_EmpSelect_Result">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_EmpUpdate" FunctionName="OfcDbMVCModel.Store.SP_EmpUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_Login" FunctionName="OfcDbMVCModel.Store.SP_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OfcDbMVCModel.SP_Login_Result">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cell" ColumnName="cell" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="access_level" ColumnName="access_level" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PrdDelete" FunctionName="OfcDbMVCModel.Store.SP_PrdDelete" />
+          <FunctionImportMapping FunctionImportName="SP_PrdInsert" FunctionName="OfcDbMVCModel.Store.SP_PrdInsert" />
+          <FunctionImportMapping FunctionImportName="SP_PrdSearch" FunctionName="OfcDbMVCModel.Store.SP_PrdSearch">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PrdSelect" FunctionName="OfcDbMVCModel.Store.SP_PrdSelect">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PrdUpdate" FunctionName="OfcDbMVCModel.Store.SP_PrdUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_Purchase" FunctionName="OfcDbMVCModel.Store.SP_Purchase" />
+          <FunctionImportMapping FunctionImportName="SP_PurDelete" FunctionName="OfcDbMVCModel.Store.SP_PurDelete" />
+          <FunctionImportMapping FunctionImportName="SP_PurInsert" FunctionName="OfcDbMVCModel.Store.SP_PurInsert" />
+          <FunctionImportMapping FunctionImportName="SP_PurSearch" FunctionName="OfcDbMVCModel.Store.SP_PurSearch">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PurSelect" FunctionName="OfcDbMVCModel.Store.SP_PurSelect">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PurUpdate" FunctionName="OfcDbMVCModel.Store.SP_PurUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_Sell" FunctionName="OfcDbMVCModel.Store.SP_Sell" />
+          <FunctionImportMapping FunctionImportName="SP_SellDelete" FunctionName="OfcDbMVCModel.Store.SP_SellDelete" />
+          <FunctionImportMapping FunctionImportName="SP_SellInsert" FunctionName="OfcDbMVCModel.Store.SP_SellInsert" />
+          <FunctionImportMapping FunctionImportName="SP_SellSearch" FunctionName="OfcDbMVCModel.Store.SP_SellSearch">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SellSelect" FunctionName="OfcDbMVCModel.Store.SP_SellSelect">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SellUpdate" FunctionName="OfcDbMVCModel.Store.SP_SellUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_SupDelete" FunctionName="OfcDbMVCModel.Store.SP_SupDelete" />
+          <FunctionImportMapping FunctionImportName="SP_SupInsert" FunctionName="OfcDbMVCModel.Store.SP_SupInsert" />
+          <FunctionImportMapping FunctionImportName="SP_SupSearch" FunctionName="OfcDbMVCModel.Store.SP_SupSearch">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SupSelect" FunctionName="OfcDbMVCModel.Store.SP_SupSelect">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SupUpdate" FunctionName="OfcDbMVCModel.Store.SP_SupUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_UserAccess" FunctionName="OfcDbMVCModel.Store.SP_UserAccess">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UserDelete" FunctionName="OfcDbMVCModel.Store.SP_UserDelete" />
+          <FunctionImportMapping FunctionImportName="SP_UserInsert" FunctionName="OfcDbMVCModel.Store.SP_UserInsert" />
+          <FunctionImportMapping FunctionImportName="SP_UserPassUpdate" FunctionName="OfcDbMVCModel.Store.SP_UserPassUpdate" />
+          <FunctionImportMapping FunctionImportName="SP_UserSearch" FunctionName="OfcDbMVCModel.Store.SP_UserSearch">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UserSelect" FunctionName="OfcDbMVCModel.Store.SP_UserSelect">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UserUpdate" FunctionName="OfcDbMVCModel.Store.SP_UserUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
