@@ -34,7 +34,7 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
         {
             try
             {
-                var data = db.Database.ExecuteSqlCommand("SP_SupCreate @supName, @supCell, @supAddress"
+                var data = db.Database.ExecuteSqlCommand("SP_SupInsert @supName, @supCell, @supAddress"
                     , new SqlParameter("@supName", c.name),
                     new SqlParameter("@supCell", c.cell),
                     new SqlParameter("@supAddress", c.address));

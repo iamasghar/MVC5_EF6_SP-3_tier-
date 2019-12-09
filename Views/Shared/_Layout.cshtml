@@ -187,9 +187,8 @@
             <div class="content">
                 <div class="container-fluid">
 
-                    <form runat="server">
-                        @RenderBody()
-                    </form>
+                    @RenderBody()
+
                     <!-- end row -->
                     <!-- end row -->
 
@@ -271,6 +270,8 @@
             return st.replace("%20", " ");
         }
         $(document).ready(function () {
+
+            $('#datatable').DataTable();
             // Display a success toast, with a title
             if (param("success") != null && param("success") != "") {
                 toastr.success(rm_space(param("success")), "Success");
@@ -283,7 +284,6 @@
             // Display an error toast, with a title
 
             // Default Datatable
-            $('#datatable').DataTable();
 
             //Buttons examples
             var table = $('#datatable-buttons').DataTable({

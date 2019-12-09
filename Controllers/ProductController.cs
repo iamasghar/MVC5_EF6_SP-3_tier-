@@ -43,19 +43,20 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
                     string img = ts + Path.GetFileName(upload.FileName);
                     var path = Path.Combine(Server.MapPath("~/uploads/"), img);
                     upload.SaveAs(path);
-                    var data = db.Database.ExecuteSqlCommand("SP_PrdCreate @prdTitle, @prdPrice, @prdStock" +
-                    ", @prdExpiry, @prdManuf, @prdImg",
-                    new SqlParameter(" @prdTitle", c.prd_title),
-                    new SqlParameter(" @prdPrice", c.prd_price),
-                    new SqlParameter(" @prdStock", c.prd_stock),
-                    new SqlParameter(" @prdExpiry", c.prd_expiry),
-                    new SqlParameter(" @prdManuf", c.prd_manufacturer),
-                    new SqlParameter(" @prdImg", img));
+                    var data = db.Database.ExecuteSqlCommand("SP_PrdInsert @prdTitle, @prdPrice, @prdStock," +
+                    " @prdExpiry, @prdManuf, @prdImg",
+                    new SqlParameter("@prdTitle", c.prd_title),
+                    new SqlParameter("@prdPrice", c.prd_price),
+                    new SqlParameter("@prdStock", c.prd_stock),
+                    new SqlParameter("@prdExpiry", c.prd_expiry),
+                    new SqlParameter("@prdManuf", c.prd_manufacturer),
+                    new SqlParameter("@prdImg", img));
                 }
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
+                string s = e.Message;
                 return View();
             }
         }
@@ -64,6 +65,7 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
         public ActionResult Edit(int id)
         {
             var data = db.Database.SqlQuery<product>("exec SP_PrdSearch @prdId", new SqlParameter("@prdId", id)).SingleOrDefault();
+            ViewBag.prd_id = data.prd_id;
             return View(data);
         }
 
@@ -87,13 +89,13 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
                 }
                 var data = db.Database.ExecuteSqlCommand("SP_PrdUpdate @prdTitle, @prdPrice, @prdStock" +
                        ", @prdExpiry, @prdManuf, @prdImg , @prdId",
-                       new SqlParameter(" @prdTitle", c.prd_title),
-                       new SqlParameter(" @prdPrice", c.prd_price),
-                       new SqlParameter(" @prdStock", c.prd_stock),
-                       new SqlParameter(" @prdExpiry", c.prd_expiry),
-                       new SqlParameter(" @prdManuf", c.prd_manufacturer),
-                       new SqlParameter(" @prdImg", img),
-                       new SqlParameter(" @prdId", c.prd_id));
+                       new SqlParameter("@prdTitle", c.prd_title),
+                       new SqlParameter("@prdPrice", c.prd_price),
+                       new SqlParameter("@prdStock", c.prd_stock),
+                       new SqlParameter("@prdExpiry", c.prd_expiry),
+                       new SqlParameter("@prdManuf", c.prd_manufacturer),
+                       new SqlParameter("@prdImg", img),
+                       new SqlParameter("@prdId", c.prd_id));
 
                 return RedirectToAction("Index");
             }

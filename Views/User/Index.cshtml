@@ -24,9 +24,6 @@
             @Html.DisplayNameFor(model => model.cnic)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.address)
         </th>
         <th>
@@ -35,35 +32,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cell)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cnic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.access_level)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.u_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.u_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.u_id })
-        </td>
-    </tr>
-}
+    @{
+        string[] access = { "none", "Admin", "Employee", "Customer" };
+    }
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cnic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @access[Convert.ToInt32(item.access_level)]
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.u_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.u_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.u_id })
+            </td>
+        </tr>
+    }
 
 </table>

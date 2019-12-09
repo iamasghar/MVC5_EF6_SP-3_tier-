@@ -60,7 +60,7 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
             try
             {
                 var data = db.Database.ExecuteSqlCommand("SP_UserInsert  @userName," +
-                    " @userCell, @userCnic, @userAddress, @access_level, @userEmail, @userPass",
+                    " @userCell, @userAddress, @userCnic, @userEmail, @access_level, @userPass",
                     new SqlParameter("@userName", c.name),
                     new SqlParameter("@userEmail", c.email),
                     new SqlParameter("@userCell", c.cell),
@@ -91,7 +91,7 @@ namespace MVC5_EF6_SP_3_tier_.Controllers
             try
             {
                 var data = db.Database.ExecuteSqlCommand("SP_UserUpdate  @userName," +
-                    " @userCell, @userCnic, @userAddress, @access_level, @userEmail, @userPass",
+                    "  @userCell, @userAddress, @userCnic, @userEmail, @access_level, @userPass, @userId",
                     new SqlParameter("@userName", c.name),
                     new SqlParameter("@userCell", c.cell),
                     new SqlParameter("@userEmail", c.email),
